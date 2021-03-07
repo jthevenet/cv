@@ -1,11 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Source+Code+Pro:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap");
 body {
-  font-family: sans-serif;
+  font-family: 'Inconsolata', sans-serif;
+  font-size: 1.5vw;
   color: white;
   background: radial-gradient(closest-side, #444, #111);
   background-attachment: fixed;
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  text-align: justify; }
+
+h1, h2 {
+  font-family: 'Source Code Pro', monospace; }
+
+h3 {
+  font-family: 'Inconsolata', sans-serif; }
 
 section {
   background-color: #303436;
@@ -15,7 +26,13 @@ section {
   max-width: 900px;
   min-width: 600px; }
 
+#myCanvasContainer {
+  text-align: center; }
+
 .container {
   padding: 10px; }
+
+#contact img {
+  height: 10%; }
 
 /*# sourceMappingURL=main.css.map */
