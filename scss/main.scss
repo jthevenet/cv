@@ -1,46 +1,106 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Source+Code+Pro:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?1mily=Montserrat&family=Source+Code+Pro:wght@200&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap');
 $dark-grey: rgb(24, 26, 27);
 
 body {
 	font-family: 'Inconsolata', sans-serif;
-	font-size: 1.5vw;
+	font-size: 1vw;
 	color: white;
 	background: radial-gradient(closest-side, #444, #111);
 	background-attachment: fixed;
-	display: flex;
-	flex-direction: column;
-	align-items: center; 
 	text-align: justify;
+}
+
+footer {
+	font-size: 0.7vw;
 }
 
 h1, h2{
 	font-family: 'Source Code Pro', monospace;
+	text-align: center;
 }
 
 h3 {
 	font-family: 'Inconsolata', sans-serif;
 }
 
-section {
+#resume-grid {
+	display: grid;
+	grid-template-columns: 8vw 8vw;	
+	text-align: center;
+}
+
+.resume-box {
+	border: 1px solid #111;
+	height: 8vw;
+	max-height: 100px;
+}
+
+.download-icon {
+	height: 8vw;
+	max-height: 100px;
+}
+background-color: #fb1466;
+
+.flag {
+	height: 1.5vw;
+}
+
+#main-grid {
+	padding: 30px;
+	display: grid;
+	grid-gap:1em;
+	grid-template-areas: 
+	"intro intro timeline timeline timeline timeline"
+	"resume resume timeline timeline timeline timeline"
+	"contact skills portfolio portfolio portfolio portfolio";
+}
+
+.container {
+	border: solid 5px ;
+	border-image-slice: 1;
+	border-image-source: linear-gradient(45deg, #fb1466,  #1c96f9,);
 	background-color: lighten($dark-grey, 10%);
 	border-radius: 10px;
-	margin: 10px;
-	width: 45%;
-	max-width: 900px;
-	min-width: 600px;
+	padding: 10px;
+}
 
+#intro {
+	grid-area: intro;
+}
+
+#timeline {
+	grid-area: timeline;
+}
+
+#contact {
+	grid-area: contact;
+	text-align: center;
+}
+
+#contact img{
+	display: inline-block;
+	height: 5vw;
+	max-height: 80px;
+}
+
+#skills {
+	grid-area: skills;
+}
+
+#resume {
+	grid-area: resume;
+}
+
+#portfolio {
+	grid-area: portfolio;
 }
 
 #myCanvasContainer {
 	text-align: center;
 }
 
-.container {
-	padding: 10px;
-}
-
-#contact img {
-	height: 10%;
+footer {
+	text-align: center;
 }
