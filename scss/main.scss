@@ -2,14 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap');
 $dark-grey: rgb(24, 26, 27);
+$red-blue-gradiant: linear-gradient(45deg, #fb1466,  #1c96f9,);
 
 body {
 	font-family: 'Inconsolata', sans-serif;
-	font-size: 1vw;
+	font-size: clamp(16px, 1.7vw, 20px);
 	color: white;
 	background: radial-gradient(closest-side, #444, #111);
 	background-attachment: fixed;
 	text-align: justify;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 footer {
@@ -27,13 +31,15 @@ h3 {
 
 #resume-grid {
 	display: grid;
-	grid-template-columns: 8vw 8vw;	
+	grid-template-columns: 8vw;	
 	text-align: center;
+	grid-gap:10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .resume-box {
-	border: 1px solid #111;
-	height: 8vw;
 	max-height: 100px;
 }
 
@@ -41,29 +47,44 @@ h3 {
 	height: 8vw;
 	max-height: 100px;
 }
-background-color: #fb1466;
+
+.resume__download-icon--enabled {
+	border-radius: 19%;
+	transition: background-image 150ms ease-in-out;
+	
+	&:hover {
+		background-image: $red-blue-gradiant;
+	}
+}
 
 .flag {
 	height: 1.5vw;
 }
 
 #main-grid {
-	padding: 30px;
+	max-width: 800px;
+	margin: 10% auto;
+	margin-top: 20px;
 	display: grid;
 	grid-gap:1em;
 	grid-template-areas: 
-	"intro intro timeline timeline timeline timeline"
-	"resume resume timeline timeline timeline timeline"
-	"contact skills portfolio portfolio portfolio portfolio";
+	"intro intro intro"
+	"timeline timeline timeline"
+	"contact skills resume";
+	
 }
 
 .container {
-	border: solid 5px ;
-	border-image-slice: 1;
-	border-image-source: linear-gradient(45deg, #fb1466,  #1c96f9,);
+	padding: 20px;
 	background-color: lighten($dark-grey, 10%);
-	border-radius: 10px;
-	padding: 10px;
+	transition: border-width 150ms ease-in-out;
+	
+	&:hover {
+		border-width: 5px;
+		border: solid 5px;
+		border-image-slice: 1;
+		border-image-source: $red-blue-gradiant;
+	}
 }
 
 #intro {
@@ -76,13 +97,25 @@ background-color: #fb1466;
 
 #contact {
 	grid-area: contact;
-	text-align: center;
+}
+
+#contact-linklist a{
+	display: flex;
+	justify-content: center;
 }
 
 #contact img{
-	display: inline-block;
-	height: 5vw;
+	text-align: center;
+	display: block;
+	height: 80px;
 	max-height: 80px;
+	margin-bottom: 20px;
+	border-radius: 50%;
+	transition: background-image 150ms ease-in-out;
+	
+	&:hover {
+		background-image: $red-blue-gradiant;
+	}
 }
 
 #skills {
@@ -91,10 +124,6 @@ background-color: #fb1466;
 
 #resume {
 	grid-area: resume;
-}
-
-#portfolio {
-	grid-area: portfolio;
 }
 
 #myCanvasContainer {

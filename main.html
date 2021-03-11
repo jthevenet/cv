@@ -12,6 +12,7 @@
 				try {
 					TagCanvas.textColour = '#ffffff';
 					TagCanvas.outlineMethod = 'none';
+					TagCanvas.wheelZoom = false;
 					TagCanvas.Start('myCanvas');
 				} catch(e) {
 					// something went wrong, hide the canvas container
@@ -40,9 +41,11 @@
 
 			<div id="contact" class="container">
 				<h3>Contact</h3>
-				<a href="mailto:jules.thevenet@gmail.com" title=""><img src="img/email-icon.png" alt="email"></a>
-				<a href="https://www.linkedin.com/in/jules-thevenet-7a26a283"><img src="img/linkedin-icon.png" alt="linkedin"></a>
-				<a href="https://github.com/jthevenet"><img src="img/github-icon.png" alt="github"></a>
+				<div id="contact-linklist">
+					<a href="mailto:jules.thevenet@gmail.com" title=""><img class="enabled-icon" src="img/email-icon.png" alt="email"></a>
+					<a href="https://www.linkedin.com/in/jules-thevenet-7a26a283"><img class="enabled-icon" src="img/linkedin-icon.png" alt="linkedin"></a>
+					<a href="https://github.com/jthevenet"><img class="enabled-icon" src="img/github-icon.png" alt="github"></a>
+				</div>
 			</div>  
 			
 			<div id="skills" class="container">
@@ -67,6 +70,7 @@
 							<li><a href="https://en.wikipedia.org/wiki/IntelliJ_IDEA" target="_blank">IntelliJ</a></li>
 							<li><a href="https://en.wikipedia.org/wiki/HTML" target="_blank">HTML</a></li>
 							<li><a href="https://en.wikipedia.org/wiki/CSS" target="_blank">CSS</a></li>
+							<li><a href="https://en.wikipedia.org/wiki/Sass_(stylesheet_language)" target="_blank">Sass</a></li>
 						</ul>
 					</canvas>
 				</div>
@@ -76,26 +80,19 @@
 				<h3>Resume</h3>
 				<div id="resume-grid">
 					<div class="resume-box">
-						<a href="/resources/Jules_Thevenet.pdf" download="Jules_Thevenet">
-							<img class="download-icon" src="img/download-icon.svg" alt="download">
-						</a>
-					</div>
-					<div class="resume-box">
-						<img class="download-icon soon" src="img/coming-soon-colored.png" alt="coming soon">
-					</div>
-					<div class="resume-box">
 						<img class="flag" src="/img/france.png" alt="french flag">
+					</div>
+					<div class="resume-box">
+						<a href="/resources/Jules_Thevenet.pdf" download="Jules_Thevenet">
+							<img class="download-icon resume__download-icon--enabled" src="img/download-icon.svg" alt="download">
+						</a>
 					</div>
 					<div class="resume-box">
 						<img class="flag" src="/img/united-kingdom.png" alt="british flag">
 					</div>
-				</div>
-			</div>
-			
-			<div id="portfolio" class="container">
-				<h3>Portfolio</h3>
-				<div>
-					<img id="portfolio-img" class="soon" src="img/coming-soon-colored.png" alt="coming soon">
+					<div class="resume-box">
+						<img class="download-icon soon" src="img/coming-soon-colored.png" alt="coming soon">
+					</div>
 				</div>
 			</div>
 
