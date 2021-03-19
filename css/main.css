@@ -56,23 +56,49 @@ h3 {
   max-height: 100px;
 }
 
-.download-icon {
-  height: 8vw;
-  max-height: 100px;
+.resume__img-wraper {
+  display: block;
+  position: relative;
+  z-index: 1;
 }
 
-.resume__download-icon--enabled {
-  border-radius: 19%;
-  -webkit-transition: background-image 150ms ease-in-out;
-  transition: background-image 150ms ease-in-out;
+.resume__img-wraper:hover::after {
+  opacity: 1;
 }
 
-.resume__download-icon--enabled:hover {
+.resume__img-wraper::after {
+  content: "";
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  top: 37px;
+  right: 50px;
+  bottom: 0;
+  left: 39px;
   background-image: linear-gradient(45deg, #fb1466, #1c96f9);
+  opacity: 0;
+  z-index: -1;
+  -webkit-transition: opacity 400ms;
+  transition: opacity 400ms;
+  height: 40px;
+  width: 40px;
+  max-height: 50px;
+  max-width: 40px;
+  border-radius: 40%;
+  border-bottom-left-radius: 45%;
+  border-bottom-right-radius: 30%;
+}
+
+.download-icon {
+  height: 100px;
 }
 
 .flag {
-  height: 1.5vw;
+  height: 20px;
 }
 
 #main-grid {
@@ -128,19 +154,44 @@ h3 {
           justify-content: center;
 }
 
-#contact img {
+#contact .contact__img-wraper {
   text-align: center;
   display: block;
   height: 80px;
-  max-height: 80px;
   margin-bottom: 20px;
   border-radius: 50%;
-  -webkit-transition: background-image 150ms ease-in-out;
-  transition: background-image 150ms ease-in-out;
+  position: relative;
+  z-index: 1;
 }
 
-#contact img:hover {
+#contact .contact__img-wraper:hover::after {
+  opacity: 1;
+}
+
+#contact .contact__img-wraper::after {
+  content: "";
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 10px;
   background-image: linear-gradient(45deg, #fb1466, #1c96f9);
+  opacity: 0;
+  z-index: -1;
+  -webkit-transition: opacity 300ms;
+  transition: opacity 300ms;
+  height: 49px;
+  width: 40px;
+  border-radius: 40%;
+  border-bottom-left-radius: 45%;
+  border-bottom-right-radius: 30%;
 }
 
 #skills {
