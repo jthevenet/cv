@@ -1,213 +1,52 @@
-@import url("https://fonts.googleapis.com/css2?1mily=Montserrat&family=Source+Code+Pro:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?1mily=Montserrat&family=Source+Code+Pro:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap");
+html {
+  height: 100%;
+}
+
 body {
-  font-family: 'Inconsolata', sans-serif;
+  font-family: "Inconsolata", sans-serif;
   font-size: clamp(16px, 1.7vw, 20px);
   color: white;
-  background: radial-gradient(closest-side, #444, #111);
-  background-attachment: fixed;
+  background: url("../img/background.png") repeat; /* Background pattern from Toptal Subtle Patterns */
   text-align: justify;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  margin: 0;
+}
+
+h1, h2 {
+  font-family: "Source Code Pro", monospace;
+  font-weight: bold;
+  text-align: center;
+  background-image: linear-gradient(90deg, #fb1466, #1c96f9);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 100%;
+}
+
+h3 {
+  font-family: "Inconsolata", sans-serif;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  margin-bottom: 0;
+}
+
+.container {
+  padding: 1.5em;
+  background-color: #303436;
+  width: 50em;
+  max-width: 80%;
+  margin: 0 auto 15px;
 }
 
 footer {
   font-size: 1vw;
-}
-
-h1, h2 {
-  font-family: 'Source Code Pro', monospace;
-  text-align: center;
-}
-
-h3 {
-  font-family: 'Inconsolata', sans-serif;
-}
-
-#resume-grid {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 8vw;
-      grid-template-columns: 8vw;
-  text-align: center;
-  grid-gap: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.resume-box {
-  max-height: 100px;
-}
-
-.resume__img-wraper {
-  display: block;
-  position: relative;
-  z-index: 1;
-}
-
-.resume__img-wraper:hover::after {
-  opacity: 1;
-}
-
-.resume__img-wraper::after {
-  content: "";
-  position: absolute;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  top: 37px;
-  right: 50px;
   bottom: 0;
-  left: 30px;
-  background-image: linear-gradient(45deg, #fb1466, #1c96f9);
-  opacity: 0;
-  z-index: -1;
-  -webkit-transition: opacity 400ms;
-  transition: opacity 400ms;
-  height: 40px;
-  width: 50px;
-  border-radius: 40%;
-  border-bottom-left-radius: 45%;
-  border-bottom-right-radius: 30%;
-}
-
-.download-icon {
-  height: 100px;
-}
-
-.flag {
-  height: 20px;
-}
-
-#main-grid {
-  max-width: 800px;
-  margin: 10% auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  display: -ms-grid;
-  display: grid;
-  grid-gap: 1em;
-      grid-template-areas: "intro intro intro" "timeline timeline timeline" "contact skills resume";
-}
-
-.container {
-  padding: 20px;
-  background-color: #303436;
-  -webkit-transition: border 200ms;
-  transition: border 200ms;
-}
-
-.container:hover {
-  border: solid 5px;
-  border-image-slice: 1;
-  border-image-source: linear-gradient(45deg, #fb1466, #1c96f9);
-}
-
-#intro {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 3;
-  grid-area: intro;
-}
-
-#timeline {
-  -ms-grid-row: 2;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 3;
-  grid-area: timeline;
-}
-
-#contact {
-  -ms-grid-row: 3;
-  -ms-grid-column: 1;
-  grid-area: contact;
-}
-
-#contact-linklist a {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-#contact .contact__img-wraper {
   text-align: center;
-  display: block;
-  height: 80px;
-  margin-bottom: 20px;
-  border-radius: 50%;
-  position: relative;
-  z-index: 1;
+  margin: auto;
 }
 
-#contact .contact__img-wraper:hover::after {
-  opacity: 1;
-}
-
-#contact .contact__img-wraper::after {
-  content: "";
-  position: absolute;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: 10px;
-  background-image: linear-gradient(45deg, #fb1466, #1c96f9);
-  opacity: 0;
-  z-index: -1;
-  -webkit-transition: opacity 300ms;
-  transition: opacity 300ms;
-  height: 49px;
-  width: 40px;
-  border-radius: 40%;
-  border-bottom-left-radius: 45%;
-  border-bottom-right-radius: 30%;
-}
-
-#skills {
-  -ms-grid-row: 3;
-  -ms-grid-column: 2;
-  grid-area: skills;
-}
-
-#resume {
-  -ms-grid-row: 3;
-  -ms-grid-column: 3;
-  grid-area: resume;
-}
-
-#myCanvasContainer {
-  text-align: center;
-}
-
-footer {
-  text-align: center;
-}
+/*# sourceMappingURL=main.css.map */
