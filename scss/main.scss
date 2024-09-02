@@ -36,11 +36,17 @@ ul {
 }
 
 .container {
-	padding: 1.5em;
+	padding: 1.5em 2em;
 	background-color: lighten($dark-grey, 10%);
 	width: 50em;
 	max-width: 80%;
-	margin: 0 auto 15px;
+	margin: 0 auto 2em;
+	border-radius: 1em;
+}
+
+#timeline-iframe {
+	border-color: white;
+	border-style: solid;
 }
 
 footer {
