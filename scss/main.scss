@@ -1,239 +1,131 @@
 @import url('https://fonts.googleapis.com/css2?1mily=Montserrat&family=Source+Code+Pro:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap');
+
 $dark-grey: rgb(24, 26, 27);
-$red-blue-gradiant: linear-gradient(45deg, #fb1466,  #1c96f9);
+$red-blue-gradiant: linear-gradient(45deg, #fb1466, #1c96f9);
 
-html { height: 100%;}
-
-body {
-	font-family: 'Inconsolata', sans-serif;
-	font-size: clamp(16px, 1.7vw, 20px);
-	color: white;
-	background: url("../img/background.png") repeat; /* Background pattern from Toptal Subtle Patterns */
-	text-align: justify;
-	margin: 0;
+html {
+  height: 100%;
 }
 
-h1, h2{
-	font-family: 'Source Code Pro', monospace;
-	font-weight: bold;
-	text-align: center;
-	background-image: linear-gradient(90deg, #fb1466,  #1c96f9);
-	background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-size: 100%;
+body {
+  font-family: 'Inconsolata', sans-serif;
+  font-size: clamp(10px, 1.7vw, 16px);
+  color: white;
+  background: url("../img/background.png") repeat; /* Background pattern from Toptal Subtle Patterns */
+  text-align: justify;
+  margin: 0;
+}
+
+h1, h2 {
+  font-family: 'Source Code Pro', monospace;
+  font-weight: bold;
+  text-align: center;
+  background-image: linear-gradient(90deg, #fb1466, #1c96f9);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 100%;
 }
 
 h3 {
-	font-family: 'Inconsolata', sans-serif;
-	margin: 0;
+  font-family: 'Inconsolata', sans-serif;
+  margin: 0;
 }
 
 h4 {
-	margin: 1em;
+  margin: 1em;
 }
 
 ul {
-	list-style: none;
-	margin-bottom: 0;
+  list-style: none;
+  margin-bottom: 0;
+  padding: initial;
 }
 
 .container {
-	padding: 1.5em 2em;
-	background-color: lighten($dark-grey, 10%);
-	width: 35em;
-	max-width: 80%;
-	margin: 0 auto 2em;
-	border-radius: 1em;
+  padding: 1.5em 2em;
+  border-radius: 1em;
+  background-color: lighten($dark-grey, 10%);
+  margin: 0 auto 2em;
+}
+
+//phones
+@media screen and (max-width: 480px) {
+  .container {
+    width: 80%;
+  }
+}
+
+//tablets
+@media screen and (min-width: 481px) {
+  .container {
+    width: 80%;
+  }
+}
+
+//larger screens
+@media screen and (min-width: 769px) {
+  .container {
+    min-width: 50em;
+    width: 40%;
+    max-width: 60em;
+  }
 }
 
 #timeline-iframe {
-	border-style: solid;
-	//border-color: white;
-	border-radius: 5px;
+  border-style: solid;
+  //border-color: white;
+  border-radius: 5px;
 }
+
 .contact-list {
-	margin: auto;
-	padding: 0;
-	display: flex;
-	justify-content: center;
-	//position: absolute;
-	//transform: translate(-50%, -50%);
+  margin: auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  //position: absolute;
+  //transform: translate(-50%, -50%);
 }
 
 .contact-list li {
-	list-style: none;
-	margin: 0 1em;
+  list-style: none;
+  margin: 0 1em;
 }
 
 .contact-list li a {
-	position: relative;
-	display: block;
-	width: 2em;
-	text-align: center;
-	font-size: 2em;
-	background-image: linear-gradient(135deg, #fb1466,  #1c96f9);
-	background-clip: text;
-	-webkit-text-fill-color: transparent;
-	transition: .5s;
+  position: relative;
+  display: block;
+  width: 2em;
+  text-align: center;
+  font-size: 2em;
+  background-image: linear-gradient(135deg, #fb1466, #1c96f9);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: .5s;
 }
 
 .contact-list li a:hover {
-	transform: scale(1.5);
+  transform: scale(1.5);
 }
 
 footer {
-	font-size: 1vw;
-	bottom: 0;
-	text-align: center;
-	margin: auto;
+  font-size: 1vw;
+  bottom: 0;
+  text-align: center;
+  margin: auto;
 }
 
-//#resume-grid {
-//	display: grid;
-//	grid-template-columns: 8vw;
-//	text-align: center;
-//	grid-gap:10px;
-//	display: flex;
-//	flex-direction: column;
-//	justify-content: center;
-//}
+#resume-wrapper {
+  display: flex;
+  text-align: center;
+}
 
-//.resume-box {
-//	max-height: 100px;
-//}
+.resume-box a {
+  display: inline-block;
+  height: 2em;
+}
 
-//.resume__img-wraper {
-//	display: block;
-//	position: relative;
-//	z-index: 1;
-//
-//	&:hover {
-//		&::after {
-//			opacity: 1;
-//		}
-//	}
-//	&::after {
-//		content: "";
-//		position: absolute;
-//		display: flex;
-//		justify-content: center;
-//        top: 37px;
-//        right: 50px;
-//        bottom: 0;
-//        left: 30px;
-//		background-image: $red-blue-gradiant;
-//		opacity: 0;
-//		z-index: -1;
-//		transition: opacity 400ms;
-//		height: 40px;
-//		width: 50px;
-//		border-radius: 40%;
-//		border-bottom-left-radius: 45%;
-//		border-bottom-right-radius: 30%;
-//	}
-//}
-//
-//.download-icon {
-//	height: 100px;
-//}
-//
-//.flag {
-//	height: 20px;
-//}
-//
-//#main-grid {
-//	max-width: 800px;
-//	margin: 10% auto;
-//	margin-top: 20px;
-//	margin-bottom: 20px;
-//	display: grid;
-//	grid-gap:1em;
-//	grid-template-areas:
-//	"intro intro intro"
-//	"timeline timeline timeline"
-//	"contact skills resume";
-//
-//}
-//
-//.container {
-//	padding: 20px;
-//	background-color: lighten($dark-grey, 10%);
-//	// background: url(../img/prism.png) repeat;
-//	transition: border 200ms;
-//	&:hover {
-//		border: solid 5px;
-//		border-image-slice: 1;
-//		border-image-source: $red-blue-gradiant;
-//	}
-//}
-//
-//#intro {
-//	grid-area: intro;
-//}
-//
-//#timeline {
-//	grid-area: timeline;
-//}
-//
-//#contact {
-//	grid-area: contact;
-//}
-//
-//#contact-linklist a{
-//	display: flex;
-//	justify-content: center;
-//}
-//
-//#contact .contact__img-wraper {
-//	text-align: center;
-//	display: block;
-//	height: 80px;
-//	margin-bottom: 20px;
-//	border-radius: 50%;
-//	position: relative;
-//	z-index: 1;
-//
-//	&:hover {
-//		&::after {
-//			opacity: 1;
-//		}
-//	}
-//	&::after {
-//		content: "";
-//		position: absolute;
-//		display: flex;
-//		justify-content: center;
-//        top: 0;
-//        right: 0;
-//        bottom: 0;
-//        left: 0;
-//		margin: 10px;
-//		background-image: $red-blue-gradiant;
-//		opacity: 0;
-//		z-index: -1;
-//		transition: opacity 300ms;
-//		height: 49px;
-//		width: 40px;
-//		border-radius: 40%;
-//		border-bottom-left-radius: 45%;
-//		border-bottom-right-radius: 30%;
-//	}
-//}
-//
-//#skills {
-//	grid-area: skills;
-//}
-//
-//#resume {
-//	grid-area: resume;
-//}
-//
-//#myCanvasContainer {
-//	text-align: center;
-//}
-//
-//footer {
-//	text-align: center;
-//}
+.flag {
+  height: 1em;
+}
