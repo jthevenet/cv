@@ -7,7 +7,7 @@ html {
 
 body {
   font-family: "Inconsolata", sans-serif;
-  font-size: clamp(10px, 1.7vw, 16px);
+  font-size: clamp(14px, 1.7vw, 24px);
   color: white;
   background: url("../img/background.png") repeat; /* Background pattern from Toptal Subtle Patterns */
   text-align: justify;
@@ -58,9 +58,8 @@ ul {
 }
 @media screen and (min-width: 769px) {
   .container {
-    min-width: 50em;
     width: 40%;
-    max-width: 60em;
+    max-width: 50em;
   }
 }
 #timeline-iframe {
