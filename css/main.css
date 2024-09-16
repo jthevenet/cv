@@ -131,11 +131,11 @@ ul {
 
 .flag {
   margin-bottom: 0.5em;
-  height: 2em;
+  height: 1.5em;
 }
 
 .resume-icon {
-  font-size: 4rem;
+  font-size: 2.5rem;
   background-image: linear-gradient(135deg, #fb1466, #1c96f9);
   background-clip: text;
   -webkit-text-fill-color: transparent;
