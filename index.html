@@ -1,148 +1,545 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/main.css" media="screen"/>
-    <script src="https://kit.fontawesome.com/c50dc023ae.js" crossOrigin="anonymous"></script>
-    <title>Jules Thévenet</title>
+<html lang="fr"><head>
+<meta charset="UTF-8">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jules Thévenet — Développeur Java / Kotlin / Angular</title>
+<meta name="description" content="Jules Thévenet — développeur freelance Java / Kotlin / Angular, 9 ans d'expérience, spécialiste des agents IA (Claude Code). Bordeaux, France.">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B0E13;
+  --panel:#11151D;
+  --panel-2:#161B25;
+  --line:#232A38;
+  --txt:#D2D9E4;
+  --muted:#7C8899;
+  --amber:#E8A33D;
+  --teal:#4FC1CE;
+  --radius:10px;
+  --mono:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--txt);
+  font-family:var(--mono);font-size:15px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(circle at 20% -10%, #16202e 0%, transparent 55%);
+}
+a{color:var(--teal);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:3px}
+
+.shell{max-width:1000px;margin:32px auto 64px;padding:0 16px}
+
+/* --- fenêtre terminal --- */
+.window{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);overflow:hidden}
+.titlebar{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 14px;background:var(--panel-2);border-bottom:1px solid var(--line);
+  position:sticky;top:0;z-index:10;
+}
+.dots{display:flex;gap:7px}
+.dot{width:11px;height:11px;border-radius:50%;background:#2C3543}
+.dot:first-child{background:#3D4756}
+.tbtitle{color:var(--muted);font-size:12.5px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lang{
+  background:transparent;border:1px solid var(--line);color:var(--muted);
+  font-family:var(--mono);font-size:12px;padding:4px 10px;border-radius:6px;cursor:pointer;
+}
+.lang:hover{border-color:var(--amber);color:var(--amber)}
+.lang b{color:var(--txt)}
+
+.body{padding:32px 26px 40px}
+@media(max-width:640px){.body{padding:24px 16px 32px}}
+
+/* --- hero --- */
+.hero{display:flex;gap:30px;align-items:flex-start;flex-wrap:wrap}
+.hero-txt{flex:1 1 340px;min-width:0}
+.cmd{color:var(--muted);font-size:13.5px;margin-bottom:18px}
+.cmd::before{content:'$ ';color:var(--amber)}
+h1{
+  font-size:clamp(26px,5.2vw,40px);line-height:1.15;margin:0 0 6px;
+  font-weight:700;letter-spacing:-.5px;color:#fff;
+}
+.role{color:var(--amber);font-size:clamp(14px,2.6vw,17px);margin:0 0 4px;font-weight:500;min-height:1.7em}
+.caret{display:inline-block;width:9px;background:var(--amber);animation:blink 1.05s step-end infinite;color:transparent}
+@keyframes blink{50%{opacity:0}}
+.years{color:var(--muted);font-size:13.5px;margin-bottom:18px}
+.pitch{margin:0 0 22px;max-width:60ch}
+.pitch .hl{color:var(--teal)}
+.links{display:flex;flex-wrap:wrap;gap:10px}
+.link{
+  border:1px solid var(--line);border-radius:6px;padding:7px 12px;font-size:13px;
+  color:var(--txt);background:var(--panel-2);transition:.15s;
+}
+.link:hover{border-color:var(--teal);color:var(--teal);text-decoration:none}
+.link span{color:var(--muted);margin-right:7px}
+
+.avatar-wrap{flex:0 0 auto;margin:0 auto}
+.avatar{
+  width:168px;height:168px;object-fit:cover;object-position:center 18%;
+  border-radius:12px;border:1px solid var(--line);
+  box-shadow:0 0 0 4px rgba(232,163,61,.09);
+  filter:saturate(.92);
+}
+.avatar-cap{text-align:center;color:var(--muted);font-size:11.5px;margin-top:8px}
+
+.status{
+  display:inline-flex;align-items:center;gap:8px;margin-top:24px;
+  border:1px solid rgba(79,193,206,.35);background:rgba(79,193,206,.07);
+  color:var(--teal);font-size:12.5px;padding:6px 12px;border-radius:999px;
+}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* --- sections --- */
+section{margin-top:52px;scroll-margin-top:60px}
+.sec-head{border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:24px}
+.sec-head .prompt{color:var(--amber)}
+.sec-head .c{color:var(--txt);font-size:14px}
+.sec-head .arg{color:var(--muted)}
+h2{font-size:19px;margin:10px 0 0;font-weight:700;color:#fff;letter-spacing:-.2px}
+
+p{margin:0 0 14px}
+.muted{color:var(--muted)}
+
+/* --- compétences --- */
+.skillgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px}
+.skillcat{border:1px solid var(--line);border-radius:8px;padding:16px;background:var(--panel-2)}
+.skillcat.ai{border-color:rgba(79,193,206,.4)}
+.skillcat h3{margin:0 0 12px;font-size:13px;color:var(--amber);font-weight:500;letter-spacing:.4px;text-transform:uppercase}
+.skillcat.ai h3{color:var(--teal)}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tag{font-size:12.5px;color:var(--txt);border:1px solid var(--line);border-radius:5px;padding:3px 8px;background:rgba(255,255,255,.02)}
+.skillcat.ai .tag{border-color:rgba(79,193,206,.28)}
+
+/* --- expériences --- */
+.xp{border-left:1px solid var(--line);padding:0 0 4px 22px;margin-left:6px;position:relative}
+.xp+.xp{margin-top:30px}
+.xp::before{
+  content:'';position:absolute;left:-4.5px;top:9px;width:8px;height:8px;border-radius:50%;
+  background:var(--bg);border:1px solid var(--muted);
+}
+.xp.now::before{background:var(--amber);border-color:var(--amber);box-shadow:0 0 0 4px rgba(232,163,61,.15)}
+.xp-top{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}
+.xp-co{font-size:16px;font-weight:700;color:#fff}
+.xp-loc{color:var(--muted);font-size:12.5px}
+.xp-date{color:var(--amber);font-size:12.5px;margin-left:auto}
+.xp-ctx{margin:6px 0 10px;color:var(--txt)}
+.xp ul{margin:0 0 12px;padding-left:18px}
+.xp li{margin-bottom:4px}
+.xp li::marker{color:var(--muted)}
+.env{font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:9px}
+.env b{color:var(--txt);font-weight:500}
+.ai-flag{
+  display:inline-block;font-size:11.5px;color:var(--teal);
+  border:1px solid rgba(79,193,206,.35);background:rgba(79,193,206,.07);
+  border-radius:5px;padding:2px 8px;margin-bottom:10px;
+}
+.todo{color:#E8A33D;font-size:12px;border:1px dashed rgba(232,163,61,.5);padding:2px 7px;border-radius:5px}
+
+/* --- listes simples --- */
+.rows{display:grid;gap:14px}
+.row{border:1px solid var(--line);border-radius:8px;padding:14px 16px;background:var(--panel-2)}
+.row .t{color:#fff;font-weight:500}
+.row .s{color:var(--muted);font-size:13px}
+
+/* --- footer --- */
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:22px;color:var(--muted);font-size:13px}
+footer .links{margin:14px 0 18px}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
 </head>
-
 <body>
-<h1>Jules Thévenet</h1>
-<h2>Développeur</h2>
+<div class="shell">
+<div class="window">
+  <div class="titlebar">
+    <div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+    <div class="tbtitle">jules@thevenet:~/portfolio</div>
+    <button class="lang" id="langBtn" type="button" aria-label="Switch language"><b>FR</b> / EN</button>
+  </div>
 
-<div id="intro" class="container">
-    <h3>Présentation</h3>
-    <p>Ancien élève de l'école 42, je suis développeur Java depuis plus de 6 ans.</p>
-    <p>J'ai eu la chance de travailler sur des projets complexes avec des équipes expérimentées pour de grands groupes
-        (Caisse des Dépôts, Accor, Ratp, France Travail).</p>
-    <p>Autodidacte, je suis habitué à l'inconnu, j'aime développer de nouvelles compétences et démarrer de nouveaux
-        projets. J'ai à cœur de rendre mon code le plus clair et structuré possible en respectant les principes SOLID et
-        clean code.</p>
-    <p>J'accompagne les entreprises sur leurs applications Java et Java/Angular :</p>
-    <ul>
-        <li>✅ Création d'applications</li>
-        <li>✅ Ajout de fonctionnalités</li>
-        <li>✅ Analyse et correction d'anomalies</li>
-        <li>✅ Tests automatisés</li>
-        <li>✅ Analyse de logs</li>
-        <li>✅ Accompagnement des nouveaux arrivants</li>
-        <li>✅ Animation de réunions et rituels Agiles</li>
-        <li>✅ Revue de code</li>
-        <li>✅ Rédaction de documentation</li>
-    </ul>
-</div>
-
-<div id="timeline" class="container">
-    <h3>Timeline</h3>
-    <p id="timeline-iframe">
-        <iframe width="100%" height="400" src="https://time.graphics/embed?v=1&id=473257" frameborder="0"
-                allowfullscreen></iframe>
-    </p>
-</div>
-
-<div id="certifications" class="container">
-    <h3>Certifications</h3>
-    <h4>Openclassrooms</h4>
-    <ul>
-        <li>✅Simplifiez-vous le CSS avec Sass</li>
-        <li>✅Utilisez Git et GitHub pour vos projets de développement</li>
-        <li>✅Apprenez à apprendre</li>
-        <li>✅Protégez l’ensemble de vos communications sur Internet</li>
-        <li>✅Développez des sites web avec Java EE</li>
-        <li>✅Gérez votre code avec Git et GitHub</li>
-        <li>✅Organisez et packagez une application Java avec Apache Maven</li>
-        <li>✅Découvrez les solutions CMS</li>
-        <li>✅Mettez en place un système de veille informationnelle</li>
-        <li>✅Comprendre le Web</li>
-        <li>✅Initiez-vous à la gestion de projet agile</li>
-        <li>✅Le Big Data transforme ma vie et celle des entreprises</li>
-        <li>✅Le machine learning est-il l’avenir de l’Homme ?</li>
-        <li>✅Maintenez-vous à jour en développement</li>
-    </ul>
-</div>
-
-<div id="contact" class="container">
-    <h3>Contact</h3>
-    <ul class="contact-list">
-        <li>
-            <a href="mailto:jules.thevenet.freelance@gmail.com">
-                <i class="fa-solid fa-envelope"></i>
-            </a>
-        </li>
-        <li>
-            <a href="https://www.linkedin.com/in/jules-thevenet-7a26a283">
-                <i class="fa-brands fa-linkedin"></i>
-            </a>
-        </li>
-        <li>
-            <a href="https://github.com/jthevenet">
-                <i class="fa-brands fa-github"></i>
-            </a>
-        </li>
-        <li>
-            <a href="https://www.malt.fr/profile/julesthevenet">
-                <i class="fa-solid fa-volleyball"></i>
-            </a>
-        </li>
-    </ul>
-</div>
-
-<div id="skills" class="container">
-    <h3>Skills</h3>
-    <h4>Langages</h4>
-    <div class="skill-list">
-        <div class="skill">Java</div>
-        <div class="skill">Kotlin</div>
-        <div class="skill">TypeScript</div>
-        <div class="skill">Html</div>
-        <div class="skill">Sql</div>
-        <div class="skill">Css</div>
-        <div class="skill">Sass</div>
+  <div class="body">
+    <!-- HERO -->
+    <div class="cmd" id="cmdWhoami">whoami</div>
+    <div class="hero">
+      <div class="hero-txt">
+        <h1>Jules Thévenet</h1>
+        <p class="role"><span id="roleTxt">Développeur Java / Kotlin / Angular</span><span class="caret">_</span></p>
+        <p class="years" id="years">9 ans d'expérience · Freelance · Bordeaux</p>
+        <p class="pitch" id="pitch">Développeur full-stack senior sur <span class="hl">Java, Kotlin, Spring Boot et Angular</span>, et praticien avancé de la <span class="hl">programmation agentique</span>
+ : Claude Code au quotidien, orchestration de sous-agents, prompt et
+context engineering. Je conçois des applications robustes et testées, et
+ j'aide les équipes à intégrer l'IA dans leur façon de développer sans
+sacrifier la qualité.</p>
+        <div class="links" id="heroLinks">
+    <a class="link" href="mailto:jthevenet@pm.me"><span>mail</span>jthevenet@pm.me</a>
+    <a class="link" href="tel:+33788556693"><span>tel</span>07.88.55.66.93</a>
+    <a class="link" href="https://www.linkedin.com/in/jules-thevenet-7a26a283" target="_blank" rel="noopener"><span>linkedin</span>jules-thevenet</a></div>
+        <div class="status"><i class="pulse"></i><span id="statusTxt">Disponible pour une nouvelle mission</span></div>
+      </div>
+      <div class="avatar-wrap">
+        <img class="avatar" src="img/photo-jules.jpg" alt="Jules Thévenet" id="avatar">
+        <div class="avatar-cap">Bordeaux, FR</div>
+      </div>
     </div>
-    <h4>Outils</h4>
-    <div class="skill-list">
-        <div class="skill">Angular</div>
-        <div class="skill">Spring</div>
-        <div class="skill">Maven</div>
-        <div class="skill">Junit</div>
-        <div class="skill">Git</div>
-        <div class="skill">IntelliJ</div>
-        <div class="skill">Gitlab</div>
-        <div class="skill">Concourse</div>
-        <div class="skill">Postman</div>
-        <div class="skill">Sonar</div>
-        <div class="skill">Jira</div>
-        <div class="skill">Bash</div>
-    </div>
+
+    <!-- SECTIONS générées -->
+    <section id="about"><div class="sec-head">
+    <div class="c"><span class="prompt">$</span> cat <span class="arg">profil.md</span></div>
+    <h2>À propos</h2>
+  </div><p>Neuf ans de développement dans des contextes variés : secteur
+ public, protection sociale, transport, hôtellerie et santé. Cette
+diversité m'a appris à m'approprier vite un existant, un métier et une
+équipe.</p><p>Je travaille en agilité, je pratique le TDD et je porte
+une attention constante à la qualité du code : revues, tests, réduction
+de la dette technique, refactoring guidé par les besoins réels. J'aime
+aussi le rôle de facilitateur — animation de rétrospectives, onboarding
+des nouveaux arrivants, ateliers et présentations techniques en équipe.</p></section>
+    <section id="skills"><div class="sec-head">
+    <div class="c"><span class="prompt">$</span> ls <span class="arg">-la ./competences</span></div>
+    <h2>Compétences techniques</h2>
+  </div><div class="skillgrid"><div class="skillcat ai"><h3>IA / Programmation agentique</h3><div class="tags"><span class="tag">Claude Code</span><span class="tag">Orchestration de sous-agents</span><span class="tag">Prompt engineering</span><span class="tag">Context engineering</span><span class="tag">MCP</span><span class="tag">Revue de code assistée</span><span class="tag">Formation d'équipe</span></div></div><div class="skillcat"><h3>Backend</h3><div class="tags"><span class="tag">Java 8 → 21</span><span class="tag">Kotlin</span><span class="tag">Spring Boot 2 &amp; 3</span><span class="tag">Spring Data JPA</span><span class="tag">Spring Security</span><span class="tag">API REST</span><span class="tag">Microservices</span><span class="tag">Maven</span><span class="tag">Gradle</span></div></div><div class="skillcat"><h3>Frontend</h3><div class="tags"><span class="tag">Angular</span><span class="tag">TypeScript</span><span class="tag">RxJS</span><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Karma / Jasmine</span></div></div><div class="skillcat"><h3>Tests &amp; qualité</h3><div class="tags"><span class="tag">TDD</span><span class="tag">JUnit</span><span class="tag">Mockito</span><span class="tag">Tests d'intégration</span><span class="tag">SonarQube</span><span class="tag">Clean Code</span><span class="tag">Revue de code</span></div></div><div class="skillcat"><h3>CI/CD &amp; DevOps</h3><div class="tags"><span class="tag">Git</span><span class="tag">GitLab CI</span><span class="tag">Jenkins</span><span class="tag">Docker</span><span class="tag">Docker Compose</span><span class="tag">Kubernetes</span></div></div><div class="skillcat"><h3>Bases de données</h3><div class="tags"><span class="tag">PostgreSQL</span><span class="tag">Oracle</span><span class="tag">MySQL</span><span class="tag">Liquibase</span></div></div><div class="skillcat"><h3>Méthode</h3><div class="tags"><span class="tag">Scrum</span><span class="tag">Kanban</span><span class="tag">Animation de rétrospectives</span><span class="tag">Onboarding</span><span class="tag">Pair programming</span></div></div><div class="skillcat"><h3>Environnement</h3><div class="tags"><span class="tag">IntelliJ IDEA</span><span class="tag">Linux / Ubuntu</span><span class="tag">Jira</span><span class="tag">Confluence</span></div></div><div class="skillcat"><h3>Langues</h3><div class="tags"><span class="tag">Français — natif</span><span class="tag">Anglais — professionnel</span></div></div></div></section>
+    <section id="xp"><div class="sec-head">
+    <div class="c"><span class="prompt">$</span> git <span class="arg">log --oneline ./experiences</span></div>
+    <h2>Expériences professionnelles</h2>
+  </div>
+    <article class="xp now">
+      <div class="xp-top">
+        <span class="xp-co">Maincare</span>
+        <span class="xp-loc">Canéjan</span>
+        <span class="xp-date">Avril 2026 → aujourd'hui</span>
+      </div>
+      <div class="ai-flag">▲ Utilisation d'agents IA (Claude Code)</div>
+      <p class="xp-ctx">Développement et maintenance de microservices dans le domaine de la santé.</p>
+      <ul><li>Migration Java 8 → Java 21 et Spring Boot 2 → 3.5</li><li>Suppression de la dépendance à Zookeeper</li><li>Création et consommation d'API REST</li><li>Correction de vulnérabilités et d'anomalies</li><li>Tests unitaires et tests d'intégration</li><li>Animation des rétrospectives d'équipe</li></ul>
+      <div class="env"><b>Environnement :</b> Java 21, Spring Boot 3.5, Microservices, JUnit, Maven, Git, SonarQube, IntelliJ IDEA, Claude Code</div>
+    </article>
+    <article class="xp">
+      <div class="xp-top">
+        <span class="xp-co">France Travail</span>
+        <span class="xp-loc">Pessac</span>
+        <span class="xp-date">Octobre 2024 → Avril 2026</span>
+      </div>
+      <div class="ai-flag">▲ Utilisation d'agents IA (Claude Code)</div>
+      <p class="xp-ctx">Développement full-stack sur des applications à fort volume liées à l'actualisation des demandeurs d'emploi.</p>
+      <ul><li>Développement backend Java / Spring Boot et frontend Angular</li><li>Onboarding et accompagnement des nouveaux arrivants</li><li>Présentations et ateliers Clean Code / Claude Code en équipe</li><li>Tests unitaires et d'intégration, revues de code</li></ul>
+      <div class="env"><b>Environnement :</b> Java, Spring Boot, Angular, TypeScript, JUnit, Git, Jenkins, Oracle, IntelliJ IDEA, Claude Code</div>
+    </article>
+    <article class="xp">
+      <div class="xp-top">
+        <span class="xp-co">Mirane</span>
+
+        <span class="xp-date">→ Septembre 2023</span>
+      </div>
+
+      <p class="xp-ctx muted">À compléter depuis le dossier de compétences.</p>
+      <ul><li>Analyse de la qualité du code existant (complexité, dette technique, code mort) et réalisation de diagrammes de séquence</li></ul>
+      <div class="env"><b>Environnement :</b> À compléter</div>
+    </article>
+    <article class="xp">
+      <div class="xp-top">
+        <span class="xp-co">Agirc-Arrco</span>
+
+        <span class="xp-date">À compléter</span>
+      </div>
+
+      <p class="xp-ctx muted">Protection sociale — à compléter depuis le dossier de compétences.</p>
+
+      <div class="env"><b>Environnement :</b> À compléter</div>
+    </article>
+    <article class="xp">
+      <div class="xp-top">
+        <span class="xp-co">RATP Smart Systems</span>
+
+        <span class="xp-date">Septembre 2021 → …</span>
+      </div>
+
+      <p class="xp-ctx muted">Transport / billettique — à compléter depuis le dossier de compétences.</p>
+
+      <div class="env"><b>Environnement :</b> À compléter</div>
+    </article>
+    <article class="xp">
+      <div class="xp-top">
+        <span class="xp-co">Audensiel — ACCOR</span>
+
+        <span class="xp-date">→ Octobre 2020</span>
+      </div>
+
+      <p class="xp-ctx muted">Hôtellerie — à compléter depuis le dossier de compétences.</p>
+
+      <div class="env"><b>Environnement :</b> À compléter</div>
+    </article>
+    <article class="xp">
+      <div class="xp-top">
+        <span class="xp-co">Onepoint — ICDC</span>
+
+        <span class="xp-date">À compléter</span>
+      </div>
+
+      <p class="xp-ctx muted">Établissement public — à compléter depuis le dossier de compétences.</p>
+
+      <div class="env"><b>Environnement :</b> À compléter</div>
+    </article></section>
+    <section id="edu"><div class="sec-head">
+    <div class="c"><span class="prompt">$</span> cat <span class="arg">formation.md</span></div>
+    <h2>Formation</h2>
+  </div><div class="rows"><div class="row"><div class="t">École 42 — Paris</div><div class="s">Formation développeur, pédagogie par projets et peer-learning</div></div><div class="row"><div class="t">Licence Banque — Assurance — Finance</div></div><div class="row"><div class="t">BTS Management des Unités Commerciales</div></div></div></section>
+    <section id="extra"><div class="sec-head">
+    <div class="c"><span class="prompt">$</span> cat <span class="arg">engagements.md</span></div>
+    <h2>Engagements &amp; distinctions</h2>
+  </div><div class="rows"><div class="row"><div class="t">Bordeaux JUG</div><div class="s">Membre actif de la communauté Java bordelaise</div></div><div class="row"><div class="t">Hackathon Société Générale</div><div class="s">Participation</div></div><div class="row"><div class="t">Learning Expedition — San Francisco</div><div class="s">Immersion dans l'écosystème tech de la Silicon Valley</div></div></div></section>
+
+    <footer id="footer">
+    <div class="c"><span style="color:var(--amber)">$</span> contact</div>
+    <div class="links">
+    <a class="link" href="mailto:jthevenet@pm.me"><span>mail</span>jthevenet@pm.me</a>
+    <a class="link" href="tel:+33788556693"><span>tel</span>07.88.55.66.93</a>
+    <a class="link" href="https://www.linkedin.com/in/jules-thevenet-7a26a283" target="_blank" rel="noopener"><span>linkedin</span>jules-thevenet</a></div>
+    <p class="muted">Ouvert aux missions longues, en régie ou en forfait — Bordeaux et remote.</p>
+    <p class="muted">Jules Thévenet — Développeur freelance · © 2026</p></footer>
+  </div>
+</div>
 </div>
 
-<div id="resume" class="container">
-    <h3>CV au format pdf</h3>
-    <div id="resume-wrapper">
-        <div class="resume-box">
-            <div class="img-wrapper">
-                <img class="flag" src="/img/france.png" alt="french flag">
-            </div>
-            <a href="/resources/Jules_Thevenet.pdf" download="Jules_Thevenet">
-                <div class="resume-icon">
-                    <i class="fa-solid fa-download"></i>
-                </div>
-            </a>
-        </div>
-        <div class="resume-box">
-            <div class="img-wrapper">
-                <img class="flag" src="/img/united-kingdom.png" alt="british flag">
-            </div>
-            <a href="/resources/Jules_Thevenet_EN.pdf" download="Jules_Thevenet">
-                <div class="resume-icon">
-                    <i class="fa-solid fa-download"></i>
-                </div>
-            </a>
-        </div>
-    </div>
-</div>
-</body>
-</html>
+<script>
+/* =========================================================================
+   DONNÉES — tout le contenu FR/EN est ici. Pour mettre à jour la page,
+   il suffit de modifier cet objet.
+   ========================================================================= */
+const CONTACT = {
+  email: "jthevenet@pm.me",
+  phone: "07.88.55.66.93",
+  linkedin: "https://www.linkedin.com/in/jules-thevenet-7a26a283"
+};
+
+const DATA = {
+  fr: {
+    langBtn: "<b>FR</b> / EN",
+    role: "Développeur Java / Kotlin / Angular",
+    years: "9 ans d'expérience · Freelance · Bordeaux",
+    pitch: "Développeur full-stack senior sur <span class='hl'>Java, Kotlin, Spring Boot et Angular</span>, et praticien avancé de la <span class='hl'>programmation agentique</span> : Claude Code au quotidien, orchestration de sous-agents, prompt et context engineering. Je conçois des applications robustes et testées, et j'aide les équipes à intégrer l'IA dans leur façon de développer sans sacrifier la qualité.",
+    status: "Disponible pour une nouvelle mission",
+    links: { email: "mail", phone: "tel", linkedin: "linkedin" },
+
+    about: { cmd: "cat", arg: "profil.md", title: "À propos",
+      body: [
+        "Neuf ans de développement dans des contextes variés : secteur public, protection sociale, transport, hôtellerie et santé. Cette diversité m'a appris à m'approprier vite un existant, un métier et une équipe.",
+        "Je travaille en agilité, je pratique le TDD et je porte une attention constante à la qualité du code : revues, tests, réduction de la dette technique, refactoring guidé par les besoins réels. J'aime aussi le rôle de facilitateur — animation de rétrospectives, onboarding des nouveaux arrivants, ateliers et présentations techniques en équipe."
+      ] },
+
+    skills: { cmd: "ls", arg: "-la ./competences", title: "Compétences techniques",
+      cats: [
+        { n:"IA / Programmation agentique", ai:true, t:["Claude Code","Orchestration de sous-agents","Prompt engineering","Context engineering","MCP","Revue de code assistée","Formation d'équipe"] },
+        { n:"Backend", t:["Java 8 → 21","Kotlin","Spring Boot 2 & 3","Spring Data JPA","Spring Security","API REST","Microservices","Maven","Gradle"] },
+        { n:"Frontend", t:["Angular","TypeScript","RxJS","HTML5","CSS3","Karma / Jasmine"] },
+        { n:"Tests & qualité", t:["TDD","JUnit","Mockito","Tests d'intégration","SonarQube","Clean Code","Revue de code"] },
+        { n:"CI/CD & DevOps", t:["Git","GitLab CI","Jenkins","Docker","Docker Compose","Kubernetes"] },
+        { n:"Bases de données", t:["PostgreSQL","Oracle","MySQL","Liquibase"] },
+        { n:"Méthode", t:["Scrum","Kanban","Animation de rétrospectives","Onboarding","Pair programming"] },
+        { n:"Environnement", t:["IntelliJ IDEA","Linux / Ubuntu","Jira","Confluence"] },
+        { n:"Langues", t:["Français — natif","Anglais — professionnel"] }
+      ] },
+
+    xp: { cmd: "git", arg: "log --oneline ./experiences", title: "Expériences professionnelles", envLabel: "Environnement",
+      items: [
+        { co:"Maincare", loc:"Canéjan", date:"Avril 2026 → aujourd'hui", now:true, ai:"Utilisation d'agents IA (Claude Code)",
+          ctx:"Développement et maintenance de microservices dans le domaine de la santé.",
+          pts:["Migration Java 8 → Java 21 et Spring Boot 2 → 3.5","Suppression de la dépendance à Zookeeper","Création et consommation d'API REST","Correction de vulnérabilités et d'anomalies","Tests unitaires et tests d'intégration","Animation des rétrospectives d'équipe"],
+          env:"Java 21, Spring Boot 3.5, Microservices, JUnit, Maven, Git, SonarQube, IntelliJ IDEA, Claude Code" },
+        { co:"France Travail", loc:"Pessac", date:"Octobre 2024 → Avril 2026", ai:"Utilisation d'agents IA (Claude Code)",
+          ctx:"Développement full-stack sur des applications à fort volume liées à l'actualisation des demandeurs d'emploi.",
+          pts:["Développement backend Java / Spring Boot et frontend Angular","Onboarding et accompagnement des nouveaux arrivants","Présentations et ateliers Clean Code / Claude Code en équipe","Tests unitaires et d'intégration, revues de code"],
+          env:"Java, Spring Boot, Angular, TypeScript, JUnit, Git, Jenkins, Oracle, IntelliJ IDEA, Claude Code" },
+        { co:"Mirane", loc:"", date:"→ Septembre 2023",
+          ctx:"À compléter depuis le dossier de compétences.",
+          pts:["Analyse de la qualité du code existant (complexité, dette technique, code mort) et réalisation de diagrammes de séquence"],
+          env:"À compléter" },
+        { co:"Agirc-Arrco", loc:"", date:"À compléter",
+          ctx:"Protection sociale — à compléter depuis le dossier de compétences.", pts:[], env:"À compléter" },
+        { co:"RATP Smart Systems", loc:"", date:"Septembre 2021 → …",
+          ctx:"Transport / billettique — à compléter depuis le dossier de compétences.", pts:[], env:"À compléter" },
+        { co:"Audensiel — ACCOR", loc:"", date:"→ Octobre 2020",
+          ctx:"Hôtellerie — à compléter depuis le dossier de compétences.", pts:[], env:"À compléter" },
+        { co:"Onepoint — ICDC", loc:"", date:"À compléter",
+          ctx:"Établissement public — à compléter depuis le dossier de compétences.", pts:[], env:"À compléter" }
+      ] },
+
+    edu: { cmd: "cat", arg: "formation.md", title: "Formation",
+      items: [
+        { t:"École 42 — Paris", s:"Formation développeur, pédagogie par projets et peer-learning" },
+        { t:"Licence Banque — Assurance — Finance", s:"" },
+        { t:"BTS Management des Unités Commerciales", s:"" }
+      ] },
+
+    extra: { cmd: "cat", arg: "engagements.md", title: "Engagements & distinctions",
+      items: [
+        { t:"Bordeaux JUG", s:"Membre actif de la communauté Java bordelaise" },
+        { t:"Hackathon Société Générale", s:"Participation" },
+        { t:"Learning Expedition — San Francisco", s:"Immersion dans l'écosystème tech de la Silicon Valley" }
+      ] },
+
+    footer: { cmd:"contact", title:"Contact", note:"Ouvert aux missions longues, en régie ou en forfait — Bordeaux et remote.", sign:"Jules Thévenet — Développeur freelance" }
+  },
+
+  en: {
+    langBtn: "FR / <b>EN</b>",
+    role: "Java / Kotlin / Angular Developer",
+    years: "9 years of experience · Freelance · Bordeaux, France",
+    pitch: "Senior full-stack developer working with <span class='hl'>Java, Kotlin, Spring Boot and Angular</span>, and an advanced practitioner of <span class='hl'>agentic programming</span>: Claude Code every day, sub-agent orchestration, prompt and context engineering. I build robust, well-tested applications and help teams bring AI into the way they develop without giving up quality.",
+    status: "Open to new missions",
+    links: { email: "mail", phone: "tel", linkedin: "linkedin" },
+
+    about: { cmd:"cat", arg:"profile.md", title:"About",
+      body:[
+        "Nine years of development across varied domains: public sector, social protection, transport, hospitality and healthcare. That diversity taught me to get up to speed quickly on an existing codebase, a business domain and a team.",
+        "I work in agile teams, practise TDD and pay constant attention to code quality: reviews, tests, technical-debt reduction, refactoring driven by real needs. I also enjoy the facilitator role — running retrospectives, onboarding newcomers, and leading technical workshops and talks."
+      ] },
+
+    skills: { cmd:"ls", arg:"-la ./skills", title:"Technical skills",
+      cats:[
+        { n:"AI / Agentic programming", ai:true, t:["Claude Code","Sub-agent orchestration","Prompt engineering","Context engineering","MCP","AI-assisted code review","Team enablement"] },
+        { n:"Backend", t:["Java 8 → 21","Kotlin","Spring Boot 2 & 3","Spring Data JPA","Spring Security","REST APIs","Microservices","Maven","Gradle"] },
+        { n:"Frontend", t:["Angular","TypeScript","RxJS","HTML5","CSS3","Karma / Jasmine"] },
+        { n:"Testing & quality", t:["TDD","JUnit","Mockito","Integration testing","SonarQube","Clean Code","Code review"] },
+        { n:"CI/CD & DevOps", t:["Git","GitLab CI","Jenkins","Docker","Docker Compose","Kubernetes"] },
+        { n:"Databases", t:["PostgreSQL","Oracle","MySQL","Liquibase"] },
+        { n:"Ways of working", t:["Scrum","Kanban","Retrospective facilitation","Onboarding","Pair programming"] },
+        { n:"Environment", t:["IntelliJ IDEA","Linux / Ubuntu","Jira","Confluence"] },
+        { n:"Languages", t:["French — native","English — professional"] }
+      ] },
+
+    xp: { cmd:"git", arg:"log --oneline ./experience", title:"Professional experience", envLabel:"Stack",
+      items:[
+        { co:"Maincare", loc:"Canéjan, FR", date:"April 2026 → present", now:true, ai:"AI agents in use (Claude Code)",
+          ctx:"Development and maintenance of healthcare microservices.",
+          pts:["Java 8 → 21 and Spring Boot 2 → 3.5 migration","Removal of the Zookeeper dependency","Building and consuming REST APIs","Fixing vulnerabilities and defects","Unit and integration testing","Facilitating team retrospectives"],
+          env:"Java 21, Spring Boot 3.5, Microservices, JUnit, Maven, Git, SonarQube, IntelliJ IDEA, Claude Code" },
+        { co:"France Travail", loc:"Pessac, FR", date:"October 2024 → April 2026", ai:"AI agents in use (Claude Code)",
+          ctx:"Full-stack development on high-volume applications for jobseeker status updates.",
+          pts:["Java / Spring Boot backend and Angular frontend development","Onboarding and mentoring of newcomers","Clean Code and Claude Code talks and workshops for the team","Unit and integration testing, code reviews"],
+          env:"Java, Spring Boot, Angular, TypeScript, JUnit, Git, Jenkins, Oracle, IntelliJ IDEA, Claude Code" },
+        { co:"Mirane", loc:"", date:"→ September 2023",
+          ctx:"To be completed from the skills dossier.",
+          pts:["Analysis of existing code quality (complexity, technical debt, dead code) and sequence diagrams"],
+          env:"To be completed" },
+        { co:"Agirc-Arrco", loc:"", date:"To be completed",
+          ctx:"Social protection — to be completed from the skills dossier.", pts:[], env:"To be completed" },
+        { co:"RATP Smart Systems", loc:"", date:"September 2021 → …",
+          ctx:"Transport / ticketing — to be completed from the skills dossier.", pts:[], env:"To be completed" },
+        { co:"Audensiel — ACCOR", loc:"", date:"→ October 2020",
+          ctx:"Hospitality — to be completed from the skills dossier.", pts:[], env:"To be completed" },
+        { co:"Onepoint — ICDC", loc:"", date:"To be completed",
+          ctx:"Public institution — to be completed from the skills dossier.", pts:[], env:"To be completed" }
+      ] },
+
+    edu: { cmd:"cat", arg:"education.md", title:"Education",
+      items:[
+        { t:"École 42 — Paris", s:"Software engineering, project-based and peer learning" },
+        { t:"Bachelor's degree in Banking, Insurance & Finance", s:"" },
+        { t:"Two-year degree in Retail Management (BTS MUC)", s:"" }
+      ] },
+
+    extra: { cmd:"cat", arg:"community.md", title:"Community & highlights",
+      items:[
+        { t:"Bordeaux JUG", s:"Active member of the Bordeaux Java user group" },
+        { t:"Société Générale hackathon", s:"Participant" },
+        { t:"Learning Expedition — San Francisco", s:"Immersion in the Silicon Valley tech ecosystem" }
+      ] },
+
+    footer: { cmd:"contact", title:"Contact", note:"Open to long-term missions, on-site around Bordeaux or remote.", sign:"Jules Thévenet — Freelance developer" }
+  }
+};
+
+/* ========================= RENDU ========================= */
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
+const isTodo = s => /compléter|completed/i.test(s);
+
+function head(d){
+  return `<div class="sec-head">
+    <div class="c"><span class="prompt">$</span> ${d.cmd} <span class="arg">${d.arg||''}</span></div>
+    <h2>${d.title}</h2>
+  </div>`;
+}
+
+function heroLinks(t){
+  return `
+    <a class="link" href="mailto:${CONTACT.email}"><span>${t.links.email}</span>${CONTACT.email}</a>
+    <a class="link" href="tel:+33${CONTACT.phone.replace(/\D/g,'').slice(1)}"><span>${t.links.phone}</span>${CONTACT.phone}</a>
+    <a class="link" href="${CONTACT.linkedin}" target="_blank" rel="noopener"><span>${t.links.linkedin}</span>jules-thevenet</a>`;
+}
+
+function render(lang){
+  const t = DATA[lang];
+  document.documentElement.lang = lang;
+  $('langBtn').innerHTML = t.langBtn;
+  $('years').textContent = t.years;
+  $('pitch').innerHTML = t.pitch;
+  $('statusTxt').textContent = t.status;
+  $('heroLinks').innerHTML = heroLinks(t);
+  $('avatar').alt = "Jules Thévenet";
+
+  $('about').innerHTML = head(t.about) + t.about.body.map(p=>`<p>${p}</p>`).join('');
+
+  $('skills').innerHTML = head(t.skills) + `<div class="skillgrid">` + t.skills.cats.map(c=>
+    `<div class="skillcat${c.ai?' ai':''}"><h3>${c.n}</h3><div class="tags">${
+      c.t.map(x=>`<span class="tag">${esc(x)}</span>`).join('')}</div></div>`).join('') + `</div>`;
+
+  $('xp').innerHTML = head(t.xp) + t.xp.items.map(x=>`
+    <article class="xp${x.now?' now':''}">
+      <div class="xp-top">
+        <span class="xp-co">${esc(x.co)}</span>
+        ${x.loc?`<span class="xp-loc">${esc(x.loc)}</span>`:''}
+        <span class="xp-date">${esc(x.date)}</span>
+      </div>
+      ${x.ai?`<div class="ai-flag">▲ ${esc(x.ai)}</div>`:''}
+      <p class="xp-ctx${isTodo(x.ctx)?' muted':''}">${esc(x.ctx)}</p>
+      ${x.pts.length?`<ul>${x.pts.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>`:''}
+      <div class="env"><b>${t.xp.envLabel} :</b> ${esc(x.env)}</div>
+    </article>`).join('');
+
+  const rows = d => head(d) + `<div class="rows">` + d.items.map(i=>
+    `<div class="row"><div class="t">${esc(i.t)}</div>${i.s?`<div class="s">${esc(i.s)}</div>`:''}</div>`).join('') + `</div>`;
+  $('edu').innerHTML = rows(t.edu);
+  $('extra').innerHTML = rows(t.extra);
+
+  $('footer').innerHTML = `
+    <div class="c"><span style="color:var(--amber)">$</span> ${t.footer.cmd}</div>
+    <div class="links">${heroLinks(t)}</div>
+    <p class="muted">${t.footer.note}</p>
+    <p class="muted">${t.footer.sign} · © ${new Date().getFullYear()}</p>`;
+
+  typeRole(t.role);
+}
+
+/* effet de frappe sur le titre */
+let typeTimer;
+function typeRole(text){
+  clearTimeout(typeTimer);
+  const el = $('roleTxt');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){ el.textContent = text; return; }
+  el.textContent = '';
+  let i = 0;
+  (function step(){
+    el.textContent = text.slice(0, ++i);
+    if (i < text.length) typeTimer = setTimeout(step, 32);
+  })();
+}
+
+let lang = (navigator.language || 'fr').toLowerCase().startsWith('fr') ? 'fr' : 'en';
+$('langBtn').addEventListener('click', () => { lang = lang === 'fr' ? 'en' : 'fr'; render(lang); });
+$('cmdWhoami').textContent = 'whoami';
+render(lang);
+</script>
+
+
+</body></html>
