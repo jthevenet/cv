@@ -118,28 +118,56 @@ p{margin:0 0 14px}
 .skillcat.ai .tag{border-color:rgba(79,193,206,.28)}
 
 /* --- expériences --- */
-.xp{border-left:1px solid var(--line);padding:0 0 4px 22px;margin-left:6px;position:relative}
-.xp+.xp{margin-top:30px}
+.xp{border-left:1px solid var(--line);padding:0 0 4px 24px;margin-left:6px;position:relative}
+.xp+.xp{margin-top:46px}
 .xp::before{
   content:'';position:absolute;left:-4.5px;top:9px;width:8px;height:8px;border-radius:50%;
   background:var(--bg);border:1px solid var(--muted);
 }
 .xp.now::before{background:var(--amber);border-color:var(--amber);box-shadow:0 0 0 4px rgba(232,163,61,.15)}
 .xp-top{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}
-.xp-co{font-size:16px;font-weight:700;color:#fff}
+.xp-co{font-size:16.5px;font-weight:700;color:#fff;letter-spacing:-.2px}
 .xp-loc{color:var(--muted);font-size:12.5px}
-.xp-date{color:var(--amber);font-size:12.5px;margin-left:auto}
-.xp-ctx{margin:6px 0 10px;color:var(--txt)}
-.xp ul{margin:0 0 12px;padding-left:18px}
-.xp li{margin-bottom:4px}
-.xp li::marker{color:var(--muted)}
-.env{font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:9px}
-.env b{color:var(--txt);font-weight:500}
+.xp-date{color:var(--amber);font-size:12.5px;margin-left:auto;white-space:nowrap}
 .ai-flag{
   display:inline-block;font-size:11.5px;color:var(--teal);
   border:1px solid rgba(79,193,206,.35);background:rgba(79,193,206,.07);
-  border-radius:5px;padding:2px 8px;margin-bottom:10px;
+  border-radius:5px;padding:2px 8px;margin-top:12px;
 }
+
+/* étiquette de bloc : contexte / missions / environnement */
+.xp-label{
+  font-size:11px;text-transform:uppercase;letter-spacing:1.1px;font-weight:500;
+  color:var(--muted);margin:20px 0 9px;
+}
+
+/* contexte : encart détaché du reste */
+.xp-ctx{
+  margin:0;padding:11px 15px;max-width:78ch;
+  border-left:2px solid rgba(232,163,61,.45);border-radius:0 6px 6px 0;
+  background:rgba(255,255,255,.025);
+  color:var(--txt);font-size:14.5px;line-height:1.65;
+}
+.xp-ctx.muted{color:var(--muted)}
+
+/* missions : une ligne aérée par tâche */
+.xp-pts{list-style:none;margin:0;padding:0;display:grid;gap:10px;max-width:80ch}
+.xp-pts li{position:relative;padding-left:22px;font-size:14.5px;line-height:1.55}
+.xp-pts li::before{content:'▸';position:absolute;left:2px;color:rgba(232,163,61,.65)}
+
+/* environnement : une puce par techno */
+.env-tags{display:flex;flex-wrap:wrap;gap:6px}
+.env-tag{
+  font-size:12px;color:var(--muted);border:1px solid var(--line);
+  border-radius:5px;padding:2px 8px;background:rgba(255,255,255,.02);
+}
+
+@media(max-width:640px){
+  .xp{padding-left:18px}
+  .xp-date{margin-left:0}
+  .xp-ctx{padding:10px 12px}
+}
+
 .todo{color:#E8A33D;font-size:12px;border:1px dashed rgba(232,163,61,.5);padding:2px 7px;border-radius:5px}
 
 /* --- listes simples --- */
@@ -219,9 +247,12 @@ des nouveaux arrivants, ateliers et présentations techniques en équipe.</p></s
         <span class="xp-date">Avril 2026 → aujourd'hui</span>
       </div>
       <div class="ai-flag">▲ Utilisation d'agents IA (Claude Code)</div>
+      <div class="xp-label">Contexte</div>
       <p class="xp-ctx">Développement et maintenance de microservices dans le domaine de la santé.</p>
-      <ul><li>Migration Java 8 → Java 21 et Spring Boot 2 → 3.5</li><li>Suppression de la dépendance à Zookeeper</li><li>Création et consommation d'API REST</li><li>Correction de vulnérabilités et d'anomalies</li><li>Tests unitaires et tests d'intégration</li><li>Animation des rétrospectives d'équipe</li></ul>
-      <div class="env"><b>Environnement :</b> Java 21, Spring Boot 3.5, Microservices, JUnit, Maven, Git, SonarQube, IntelliJ IDEA, Claude Code</div>
+      <div class="xp-label">Missions</div>
+      <ul class="xp-pts"><li>Migration Java 8 → Java 21 et Spring Boot 2 → 3.5</li><li>Suppression de la dépendance à Zookeeper</li><li>Création et consommation d'API REST</li><li>Correction de vulnérabilités et d'anomalies</li><li>Tests unitaires et tests d'intégration</li><li>Animation des rétrospectives d'équipe</li></ul>
+      <div class="xp-label">Environnement</div>
+      <div class="env-tags"><span class="env-tag">Java 21</span><span class="env-tag">Spring Boot 3.5</span><span class="env-tag">Microservices</span><span class="env-tag">JUnit</span><span class="env-tag">Maven</span><span class="env-tag">Git</span><span class="env-tag">SonarQube</span><span class="env-tag">IntelliJ IDEA</span><span class="env-tag">Claude Code</span></div>
     </article>
     <article class="xp">
       <div class="xp-top">
@@ -230,9 +261,12 @@ des nouveaux arrivants, ateliers et présentations techniques en équipe.</p></s
         <span class="xp-date">Octobre 2024 → Avril 2026</span>
       </div>
       <div class="ai-flag">▲ Utilisation d'agents IA (Claude Code)</div>
+      <div class="xp-label">Contexte</div>
       <p class="xp-ctx">Développement full-stack sur des applications à fort volume liées à l'actualisation des demandeurs d'emploi.</p>
-      <ul><li>Développement backend Java / Spring Boot et frontend Angular</li><li>Onboarding et accompagnement des nouveaux arrivants</li><li>Présentations et ateliers Clean Code / Claude Code en équipe</li><li>Tests unitaires et d'intégration, revues de code</li></ul>
-      <div class="env"><b>Environnement :</b> Java, Spring Boot, Angular, TypeScript, JUnit, Git, Jenkins, Oracle, IntelliJ IDEA, Claude Code</div>
+      <div class="xp-label">Missions</div>
+      <ul class="xp-pts"><li>Développement backend Java / Spring Boot et frontend Angular</li><li>Onboarding et accompagnement des nouveaux arrivants</li><li>Présentations et ateliers Clean Code / Claude Code en équipe</li><li>Tests unitaires et d'intégration, revues de code</li></ul>
+      <div class="xp-label">Environnement</div>
+      <div class="env-tags"><span class="env-tag">Java</span><span class="env-tag">Spring Boot</span><span class="env-tag">Angular</span><span class="env-tag">TypeScript</span><span class="env-tag">JUnit</span><span class="env-tag">Git</span><span class="env-tag">Jenkins</span><span class="env-tag">Oracle</span><span class="env-tag">IntelliJ IDEA</span><span class="env-tag">Claude Code</span></div>
     </article>
     <article class="xp">
       <div class="xp-top">
@@ -240,9 +274,13 @@ des nouveaux arrivants, ateliers et présentations techniques en équipe.</p></s
         <span class="xp-loc">Cenon</span>
         <span class="xp-date">Mars 2023 → Septembre 2023</span>
       </div>
+      
+      <div class="xp-label">Contexte</div>
       <p class="xp-ctx">Accompagnement, en tant que lead technique, d'une équipe de développeurs autour d'une application Java.</p>
-      <ul><li>Mise en place de nouvelles méthodes de travail (DoD, DoR, guidelines)</li><li>Développement de nouvelles fonctionnalités et correction d'anomalies</li><li>Analyse de la qualité du code existant (complexité, dette technique, code mort) et réalisation de diagrammes de séquence (PlantUML)</li><li>Analyse de la gestion des logs (exceptions non remontées, exceptions génériques)</li><li>Accompagnement des nouveaux arrivants et pair programming</li><li>Rédaction de documentation technique et de tickets, échanges avec l'équipe Support</li></ul>
-      <div class="env"><b>Environnement :</b> Java 8, JavaFX, Maven, Git, GitLab, IntelliJ IDEA</div>
+      <div class="xp-label">Missions</div>
+      <ul class="xp-pts"><li>Mise en place de nouvelles méthodes de travail (DoD, DoR, guidelines)</li><li>Développement de nouvelles fonctionnalités et correction d'anomalies</li><li>Analyse de la qualité du code existant : complexité, dette technique, code mort</li><li>Réalisation de diagrammes de séquence (PlantUML)</li><li>Analyse de la gestion des logs (exceptions non remontées, exceptions génériques)</li><li>Accompagnement des nouveaux arrivants et pair programming</li><li>Rédaction de documentation technique et de tickets, échanges avec l'équipe Support</li></ul>
+      <div class="xp-label">Environnement</div>
+      <div class="env-tags"><span class="env-tag">Java 8</span><span class="env-tag">JavaFX</span><span class="env-tag">Maven</span><span class="env-tag">Git</span><span class="env-tag">GitLab</span><span class="env-tag">IntelliJ IDEA</span></div>
     </article>
     <article class="xp">
       <div class="xp-top">
@@ -250,19 +288,27 @@ des nouveaux arrivants, ateliers et présentations techniques en équipe.</p></s
         <span class="xp-loc">Gradignan</span>
         <span class="xp-date">Octobre 2022 → Février 2023</span>
       </div>
+      
+      <div class="xp-label">Contexte</div>
       <p class="xp-ctx">Développement et maintenance de batchs Java, dans le secteur de la protection sociale.</p>
-      <ul><li>Développement de batchs Spring Batch</li><li>Tests unitaires</li><li>Correction d'anomalies</li><li>Rédaction de documentation technique</li></ul>
-      <div class="env"><b>Environnement :</b> Java 8, Spring Batch, JUnit 5, SQL, PostgreSQL, Eclipse, PgAdmin4</div>
+      <div class="xp-label">Missions</div>
+      <ul class="xp-pts"><li>Développement de batchs Spring Batch</li><li>Tests unitaires</li><li>Correction d'anomalies</li><li>Rédaction de documentation technique</li></ul>
+      <div class="xp-label">Environnement</div>
+      <div class="env-tags"><span class="env-tag">Java 8</span><span class="env-tag">Spring Batch</span><span class="env-tag">JUnit 5</span><span class="env-tag">SQL</span><span class="env-tag">PostgreSQL</span><span class="env-tag">Eclipse</span><span class="env-tag">PgAdmin4</span></div>
     </article>
     <article class="xp">
       <div class="xp-top">
         <span class="xp-co">RATP Smart Systems</span>
-
+        
         <span class="xp-date">Septembre 2021 → Octobre 2022</span>
       </div>
+      
+      <div class="xp-label">Contexte</div>
       <p class="xp-ctx">Développement et maintenance d'applications Java au sein d'une équipe Scrum multi-projets, dans le secteur du transport.</p>
-      <ul><li>Création de modules Angular et d'endpoints pour un web-service REST</li><li>Récupération de données en base et correction d'anomalies</li><li>Tests unitaires et tests d'intégration</li><li>Revue de code (merge requests) et pair programming</li><li>Estimation des tickets lors des séances d'affinage</li><li>Rédaction de documentation technique</li></ul>
-      <div class="env"><b>Environnement :</b> Java 8/11, Spring Batch, Mockito, JUnit 5, SQL, PostgreSQL, Web-services REST, Postman, IntelliJ IDEA, DBeaver</div>
+      <div class="xp-label">Missions</div>
+      <ul class="xp-pts"><li>Création de modules Angular et d'endpoints pour un web-service REST</li><li>Récupération de données en base et correction d'anomalies</li><li>Tests unitaires et tests d'intégration</li><li>Revue de code (merge requests) et pair programming</li><li>Estimation des tickets lors des séances d'affinage</li><li>Rédaction de documentation technique</li></ul>
+      <div class="xp-label">Environnement</div>
+      <div class="env-tags"><span class="env-tag">Java 8/11</span><span class="env-tag">Spring Batch</span><span class="env-tag">Mockito</span><span class="env-tag">JUnit 5</span><span class="env-tag">SQL</span><span class="env-tag">PostgreSQL</span><span class="env-tag">Web-services REST</span><span class="env-tag">Postman</span><span class="env-tag">IntelliJ IDEA</span><span class="env-tag">DBeaver</span></div>
     </article>
     <article class="xp">
       <div class="xp-top">
@@ -270,9 +316,13 @@ des nouveaux arrivants, ateliers et présentations techniques en équipe.</p></s
         <span class="xp-loc">Bordeaux</span>
         <span class="xp-date">Avril 2019 → Octobre 2020</span>
       </div>
+      
+      <div class="xp-label">Contexte</div>
       <p class="xp-ctx">Maintenance évolutive du système de remontée des réservations du groupe hôtelier ACCOR.</p>
-      <ul><li>Mapping de réservations XML vers des beans Java</li><li>Appels à des services REST (GET, POST, PUT)</li><li>Enrichissement de beans, récupération et diffusion des données</li><li>Tests unitaires</li><li>Rédaction de documentation technique</li></ul>
-      <div class="env"><b>Environnement :</b> Java 8, Spring Boot, Spring Integration, Maven, JUnit 5, Svn, Git, Sonar, Jenkins</div>
+      <div class="xp-label">Missions</div>
+      <ul class="xp-pts"><li>Mapping de réservations XML vers des beans Java</li><li>Appels à des services REST (GET, POST, PUT)</li><li>Enrichissement de beans, récupération et diffusion des données</li><li>Tests unitaires</li><li>Rédaction de documentation technique</li></ul>
+      <div class="xp-label">Environnement</div>
+      <div class="env-tags"><span class="env-tag">Java 8</span><span class="env-tag">Spring Boot</span><span class="env-tag">Spring Integration</span><span class="env-tag">Maven</span><span class="env-tag">JUnit 5</span><span class="env-tag">Svn</span><span class="env-tag">Git</span><span class="env-tag">Sonar</span><span class="env-tag">Jenkins</span></div>
     </article>
     <article class="xp">
       <div class="xp-top">
@@ -280,9 +330,13 @@ des nouveaux arrivants, ateliers et présentations techniques en équipe.</p></s
         <span class="xp-loc">Bordeaux</span>
         <span class="xp-date">Avril 2017 → Avril 2019</span>
       </div>
+      
+      <div class="xp-label">Contexte</div>
       <p class="xp-ctx">Prestation au sein d'équipes agiles pour ICDC (Caisse des Dépôts et Consignations) : développement de batchs comptables, puis maintenance évolutive des portails CPF/CPA et d'un portail retraite.</p>
-      <ul><li>Développement de nouvelles fonctionnalités sur les portails CPF/CPA et un portail retraite</li><li>Développement de batchs comptables et migration Java 7 → Java 8</li><li>Appels à des services REST et SOAP, intégration de la connexion FranceConnect</li><li>Collaboration avec des équipes multi-fuseaux horaires (Canada, France, Thaïlande)</li><li>Accompagnement des nouveaux arrivants, animation de rétrospectives et démos</li><li>Création de jobs Jenkins pour le déploiement de versions</li></ul>
-      <div class="env"><b>Environnement :</b> Java 6/8, Spring MVC/Batch, Maven, Git, Web Services REST/SOAP, JUnit, Mockito, SQL, SoapUI, Jenkins, Sonar, Eclipse, IntelliJ IDEA</div>
+      <div class="xp-label">Missions</div>
+      <ul class="xp-pts"><li>Développement de nouvelles fonctionnalités sur les portails CPF/CPA et un portail retraite</li><li>Développement de batchs comptables et migration Java 7 → Java 8</li><li>Appels à des services REST et SOAP, intégration de la connexion FranceConnect</li><li>Collaboration avec des équipes multi-fuseaux horaires (Canada, France, Thaïlande)</li><li>Accompagnement des nouveaux arrivants, animation de rétrospectives et démos</li><li>Création de jobs Jenkins pour le déploiement de versions</li></ul>
+      <div class="xp-label">Environnement</div>
+      <div class="env-tags"><span class="env-tag">Java 6/8</span><span class="env-tag">Spring MVC/Batch</span><span class="env-tag">Maven</span><span class="env-tag">Git</span><span class="env-tag">Web Services REST/SOAP</span><span class="env-tag">JUnit</span><span class="env-tag">Mockito</span><span class="env-tag">SQL</span><span class="env-tag">SoapUI</span><span class="env-tag">Jenkins</span><span class="env-tag">Sonar</span><span class="env-tag">Eclipse</span><span class="env-tag">IntelliJ IDEA</span></div>
     </article></section>
     <section id="edu"><div class="sec-head">
     <div class="c"><span class="prompt">$</span> cat <span class="arg">formation.md</span></div>
@@ -344,7 +398,8 @@ const DATA = {
         { n:"Langues", t:["Français — natif","Anglais — professionnel"] }
       ] },
 
-    xp: { cmd: "git", arg: "log --oneline ./experiences", title: "Expériences professionnelles", envLabel: "Environnement",
+    xp: { cmd: "git", arg: "log --oneline ./experiences", title: "Expériences professionnelles",
+      ctxLabel: "Contexte", ptsLabel: "Missions", envLabel: "Environnement",
       items: [
         { co:"Maincare", loc:"Canéjan", date:"Avril 2026 → aujourd'hui", now:true, ai:"Utilisation d'agents IA (Claude Code)",
           ctx:"Développement et maintenance de microservices dans le domaine de la santé.",
@@ -356,7 +411,7 @@ const DATA = {
           env:"Java, Spring Boot, Angular, TypeScript, JUnit, Git, Jenkins, Oracle, IntelliJ IDEA, Claude Code" },
         { co:"Mirane", loc:"Cenon", date:"Mars 2023 → Septembre 2023",
           ctx:"Accompagnement, en tant que lead technique, d'une équipe de développeurs autour d'une application Java.",
-          pts:["Mise en place de nouvelles méthodes de travail (DoD, DoR, guidelines)","Développement de nouvelles fonctionnalités et correction d'anomalies","Analyse de la qualité du code existant (complexité, dette technique, code mort) et réalisation de diagrammes de séquence (PlantUML)","Analyse de la gestion des logs (exceptions non remontées, exceptions génériques)","Accompagnement des nouveaux arrivants et pair programming","Rédaction de documentation technique et de tickets, échanges avec l'équipe Support"],
+          pts:["Mise en place de nouvelles méthodes de travail (DoD, DoR, guidelines)","Développement de nouvelles fonctionnalités et correction d'anomalies","Analyse de la qualité du code existant : complexité, dette technique, code mort","Réalisation de diagrammes de séquence (PlantUML)","Analyse de la gestion des logs (exceptions non remontées, exceptions génériques)","Accompagnement des nouveaux arrivants et pair programming","Rédaction de documentation technique et de tickets, échanges avec l'équipe Support"],
           env:"Java 8, JavaFX, Maven, Git, GitLab, IntelliJ IDEA" },
         { co:"Agirc-Arrco", loc:"Gradignan", date:"Octobre 2022 → Février 2023",
           ctx:"Développement et maintenance de batchs Java, dans le secteur de la protection sociale.",
@@ -420,7 +475,8 @@ const DATA = {
         { n:"Languages", t:["French — native","English — professional"] }
       ] },
 
-    xp: { cmd:"git", arg:"log --oneline ./experience", title:"Professional experience", envLabel:"Stack",
+    xp: { cmd:"git", arg:"log --oneline ./experience", title:"Professional experience",
+      ctxLabel:"Context", ptsLabel:"Highlights", envLabel:"Stack",
       items:[
         { co:"Maincare", loc:"Canéjan, FR", date:"April 2026 → present", now:true, ai:"AI agents in use (Claude Code)",
           ctx:"Development and maintenance of healthcare microservices.",
@@ -432,7 +488,7 @@ const DATA = {
           env:"Java, Spring Boot, Angular, TypeScript, JUnit, Git, Jenkins, Oracle, IntelliJ IDEA, Claude Code" },
         { co:"Mirane", loc:"Cenon, FR", date:"March 2023 → September 2023",
           ctx:"Supporting a team of developers on a Java application, as technical lead.",
-          pts:["Introduction of new working practices (DoD, DoR, guidelines)","New feature development and bug fixing","Analysis of existing code quality (complexity, technical debt, dead code) and creation of sequence diagrams (PlantUML)","Log handling analysis (unhandled exceptions, generic exception usage)","Onboarding new joiners and pair programming","Technical documentation and ticket writing, coordination with the Support team"],
+          pts:["Introduction of new working practices (DoD, DoR, guidelines)","New feature development and bug fixing","Analysis of existing code quality: complexity, technical debt, dead code","Sequence diagram modelling (PlantUML)","Log handling analysis (unhandled exceptions, generic exception usage)","Onboarding new joiners and pair programming","Technical documentation and ticket writing, coordination with the Support team"],
           env:"Java 8, JavaFX, Maven, Git, GitLab, IntelliJ IDEA" },
         { co:"Agirc-Arrco", loc:"Gradignan, FR", date:"October 2022 → February 2023",
           ctx:"Development and maintenance of Java batch jobs, in the social protection sector.",
@@ -489,6 +545,12 @@ function heroLinks(t){
     <a class="link" href="${CONTACT.linkedin}" target="_blank" rel="noopener"><span>${t.links.linkedin}</span>jules-thevenet</a>`;
 }
 
+/* "a, b, c" -> une puce par techno */
+function envTags(env){
+  return env.split(',').map(e => e.trim()).filter(Boolean)
+    .map(e => `<span class="env-tag">${esc(e)}</span>`).join('');
+}
+
 function render(lang){
   const t = DATA[lang];
   document.documentElement.lang = lang;
@@ -513,9 +575,12 @@ function render(lang){
         <span class="xp-date">${esc(x.date)}</span>
       </div>
       ${x.ai?`<div class="ai-flag">▲ ${esc(x.ai)}</div>`:''}
+      <div class="xp-label">${t.xp.ctxLabel}</div>
       <p class="xp-ctx${isTodo(x.ctx)?' muted':''}">${esc(x.ctx)}</p>
-      ${x.pts.length?`<ul>${x.pts.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>`:''}
-      <div class="env"><b>${t.xp.envLabel} :</b> ${esc(x.env)}</div>
+      ${x.pts.length?`<div class="xp-label">${t.xp.ptsLabel}</div>
+      <ul class="xp-pts">${x.pts.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>`:''}
+      <div class="xp-label">${t.xp.envLabel}</div>
+      <div class="env-tags">${envTags(x.env)}</div>
     </article>`).join('');
 
   const rows = d => head(d) + `<div class="rows">` + d.items.map(i=>
